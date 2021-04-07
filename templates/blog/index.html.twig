@@ -4,39 +4,19 @@
 
 {% block body %}
 <section class="article">
-
+    {% for article in articles %}
     <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 06/04/2021 à 21:00 dans la catégorie Politique</div>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie Politique</div>
         <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita velit ratione veniam laudantium eius minus.</p>
-            <p>Maxime dolorum doloremque suscipit natus, rem totam aliquam, rerum distinctio dignissimos harum qui. Odit, sint.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-info">Lire la suite</a>
+            <img src="{{ article.image }}" alt="">
+            <p>{{ article.content | raw }}</p>
+            
+            <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-info">Lire la suite</a>
         </div>
     </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 06/04/2021 à 21:00 dans la catégorie Politique</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam, officiis ea error consequatur doloribus quisquam.</p>
-            <p>Numquam reprehenderit, dolorem illum accusantium quibusdam, maxime dolorum non, atque eveniet adipisci soluta sunt neque!</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-info">Lire la suite</a>
-        </div>
-    </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 06/04/2021 à 21:00 dans la catégorie Politique</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt ut illo ipsam. Sequi, placeat!</p>
-            <p>Deleniti accusamus numquam provident dolor aliquid eveniet dolores quas eum, nemo quam eaque dolorum velit.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-info">Lire la suite</a>
-        </div>
-    </article>
-
-
+    
+    {% endfor %}
 </section>
 
 {% endblock %}
